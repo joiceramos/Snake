@@ -4,45 +4,54 @@
  * and open the template in the editor.
  */
 package snake;
-
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import javazoom.jl.player.Player;
-import static snake.Tela.musicaFundo;
 
-/**
- *
- * @author Benny
- */
-public class Sounds {
- 
-    public static void SoundEatFood(){
-        String path = "src/sound/eat_food.mp3";
-        File sound = new File(path);
-        PlayerSound musica = new PlayerSound();
-        musica.play(sound);
-        musica.start();
-    }
-    
-    public static void backgroudGame(){
-        Tela.musicaFundo = true;
-        String path = "src/sound/background_game.mp3";
-        File sound = new File(path);
-        PlayerSound musica = new PlayerSound();
-        musica.play(sound);
-        musica.start();
-    }
-    
-    public static void SoundEndGame(){
-        String path = "src/sound/end_game.mp3";
-        File sound = new File(path);
-        PlayerSound musica = new PlayerSound();
-        musica.play(sound);
-        musica.start();
-    }
-    
+public class Sounds extends Thread{
+	
+	 PlayerSound song;
+	 String selectedSound = "";
+	 boolean fimJogo;
+	 String songGame = "src/sound/background_game.mp3";
+	 String songEat = "src/sound/eat_food.mp3";
+	 String songEnd = "src/sound/end_game.mp3";
+	
+	public Sounds (String selectedSound, boolean fimJogo) {
+		this.selectedSound = selectedSound;
+		this.fimJogo = fimJogo;
+	};
+	
+	@Override
+	public void run() {
+
+		File sound;
+		
+		if(selectedSound == "fundo") {
+			sound = new File(songGame);
+		} else {
+			if(selectedSound == "eat") {
+				sound = new File(songEat);
+			} else {
+				sound = new File(songEnd);
+			}
+		}
+		
+		song = new PlayerSound();
+		song.play(sound);
+		song.start();
+		stopSongWhenGameOver(song);
+	}
+	private void stopSongWhenGameOver(PlayerSound song) {
+		if(Tela.fimJogo) {
+			song.stop();
+		} else {
+
+			try {
+				Thread.sleep(100);
+				stopSongWhenGameOver(song);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 }

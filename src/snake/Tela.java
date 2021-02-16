@@ -85,12 +85,17 @@ public class Tela extends javax.swing.JFrame {
             }
         });
 
+        
+        songBackground();
+        
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
+        
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 660, Short.MAX_VALUE)
@@ -144,10 +149,6 @@ public class Tela extends javax.swing.JFrame {
         
         keyPressed = evt.getKeyCode();
         
-        if(!musicaFundoLoop.isAlive()) {
-            musicaFundoLoop.start();
-        }
-        
         if(!addPixel.isAlive()) {
             addPixel.start();
         }
@@ -160,32 +161,27 @@ public class Tela extends javax.swing.JFrame {
  
     public void atualizaPontos() {
         temComidaNaTela = false;
-        Sounds.SoundEatFood();
+        songEat();
         pontos += 20;
         jLabelPontos.setText(String.valueOf(pontos));;
         Tabuleiro tab = new Tabuleiro();
         tab.addFood.start();
     }
     
-    Thread musicaFundoLoop = new Thread(new Runnable(){
-        public void run(){
-            try {
-                while(!fimJogo) {
-                 Sounds.backgroudGame();
-                 Thread.sleep(38880);
-                }
-            } catch (InterruptedException e) {
-                Thread.currentThread();
-                Thread.yield();
-                e.printStackTrace();
-            }
-        }
-    });
+    public  void songBackground() {
+    	new Sounds("fundo", fimJogo).start();
+    }
+    public  void songEat() {
+    	new Sounds("eat", fimJogo).start();
+    }
+    public  void songEnd() {
+    	new Sounds("end", fimJogo).start();
+    }
     
-     public void gameOver() {
-
-        Sounds.SoundEndGame();
-        int i = JOptionPane.showConfirmDialog(null, "Fim de Jogo!\nVocê encostou na parede. \nDeseja jogar novamente?", "Fim de Jogo!", JOptionPane.YES_NO_OPTION);
+     public void gameOver() {        
+    	 songEnd();
+        
+        int i = JOptionPane.showConfirmDialog(null, "Game Over!\nDeseja jogar novamente?", "Fim de Jogo!", JOptionPane.YES_NO_OPTION);
         if (i == JOptionPane.YES_OPTION) {
             //new Tela();
         }else{
