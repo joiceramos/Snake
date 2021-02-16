@@ -169,13 +169,13 @@ public class Tela extends javax.swing.JFrame {
     }
     
     public  void songBackground() {
-    	new Sounds("fundo", fimJogo).start();
+    	new Sounds("fundo").start();
     }
     public  void songEat() {
-    	new Sounds("eat", fimJogo).start();
+    	new Sounds("eat").start();
     }
     public  void songEnd() {
-    	new Sounds("end", fimJogo).start();
+    	new Sounds("end").start();
     }
     
      public void gameOver() {        
@@ -183,7 +183,7 @@ public class Tela extends javax.swing.JFrame {
         
         int i = JOptionPane.showConfirmDialog(null, "Game Over!\nDeseja jogar novamente?", "Fim de Jogo!", JOptionPane.YES_NO_OPTION);
         if (i == JOptionPane.YES_OPTION) {
-            //new Tela();
+
         }else{
             System.exit(0);
         }

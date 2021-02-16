@@ -10,14 +10,12 @@ public class Sounds extends Thread{
 	
 	 PlayerSound song;
 	 String selectedSound = "";
-	 boolean fimJogo;
-	 String songGame = "src/sound/background_game.mp3";
-	 String songEat = "src/sound/eat_food.mp3";
-	 String songEnd = "src/sound/end_game.mp3";
+	 final String songGame = "src/sound/background_game.mp3";
+	 final String songEat = "src/sound/eat_food.mp3";
+	 final String songEnd = "src/sound/end_game.mp3";
 	
-	public Sounds (String selectedSound, boolean fimJogo) {
+	public Sounds (String selectedSound) {
 		this.selectedSound = selectedSound;
-		this.fimJogo = fimJogo;
 	};
 	
 	@Override
@@ -25,10 +23,10 @@ public class Sounds extends Thread{
 
 		File sound;
 		
-		if(selectedSound == "fundo") {
+		if(selectedSound.equals("fundo")) {
 			sound = new File(songGame);
 		} else {
-			if(selectedSound == "eat") {
+			if(selectedSound.equals("eat")) {
 				sound = new File(songEat);
 			} else {
 				sound = new File(songEnd);
@@ -38,7 +36,9 @@ public class Sounds extends Thread{
 		song = new PlayerSound();
 		song.play(sound);
 		song.start();
-		stopSongWhenGameOver(song);
+		if(selectedSound.equals("fundo")) {
+			stopSongWhenGameOver(song);
+		}
 	}
 	private void stopSongWhenGameOver(PlayerSound song) {
 		if(Tela.fimJogo) {
@@ -46,7 +46,7 @@ public class Sounds extends Thread{
 		} else {
 
 			try {
-				Thread.sleep(100);
+				Thread.sleep(1);
 				stopSongWhenGameOver(song);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
