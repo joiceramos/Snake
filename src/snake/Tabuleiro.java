@@ -20,6 +20,7 @@ public class Tabuleiro implements Runnable {
     public void buildTabuleiro() {
         
         int top = 0;
+        this.pixels[22][22] = newWall(110, 110);
         for (int linha = 0; linha < tamTabuleiro; linha++) {
             
             int left = 0;
@@ -40,6 +41,7 @@ public class Tabuleiro implements Runnable {
             }
             top += 11;
         }
+
     }
     
     public JLabel newWall(int top, int left) {
@@ -119,8 +121,8 @@ public class Tabuleiro implements Runnable {
 
                 while(!podeAlocar) {
                     System.out.println(Tela.temComidaNaTela);
-                    int linha = random.nextInt(60);
-                    int coluna = random.nextInt(60);
+                    int linha = random.nextInt(Tela.tamTabuleiro);
+                    int coluna = random.nextInt(Tela.tamTabuleiro);
 
                     if(tabuleiro[linha][coluna] == 0 && !Tela.temComidaNaTela) {
                         tabuleiro[linha][coluna] = 3;
