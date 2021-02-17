@@ -60,14 +60,14 @@ public class Tela extends javax.swing.JFrame {
     private void initComponents() {
     	
         keyPressed = 0;
-        posSnake = new ArrayList<Snake>();
-        pixels = new JLabel[tamTabuleiro][tamTabuleiro];
+        //posSnake = new ArrayList<Snake>();
+        //pixels = new JLabel[tamTabuleiro][tamTabuleiro];
         fimJogo = false;
         temComidaNaTela = false;
         pontos = 0;
         
     	fimJogo = false;
-        jPanel2 = new javax.swing.JPanel();
+        //jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabelPontos = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -171,7 +171,7 @@ public class Tela extends javax.swing.JFrame {
     public  void songEat() {
     	new Sounds("eat").start();
     }
-    public  void songEnd() {
+    public void songEnd() {
     	new Sounds("end").start();
     }
     
@@ -180,6 +180,7 @@ public class Tela extends javax.swing.JFrame {
         
         int i = JOptionPane.showConfirmDialog(null, "Game Over!\nDeseja jogar novamente?", "Fim de Jogo!", JOptionPane.YES_NO_OPTION);
         if (i == JOptionPane.YES_OPTION) {
+        	
         	setVisible(false);
 			main(null);
         }else{

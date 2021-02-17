@@ -20,7 +20,7 @@ public class Tabuleiro implements Runnable {
     public void buildTabuleiro() {
         
         int top = 0;
-        this.pixels[22][22] = newWall(110, 110);
+       // this.pixels[22][22] = newWall(110, 110);
         for (int linha = 0; linha < tamTabuleiro; linha++) {
             
             int left = 0;
@@ -37,9 +37,9 @@ public class Tabuleiro implements Runnable {
                     this.locationLeft[linha][coluna] = left;
                     this.pixels[linha][coluna] = newWalkArea(top, left);
                 }
-                left += 11;
+                left += 10;
             }
-            top += 11;
+            top += 10;
         }
 
     }
@@ -47,7 +47,7 @@ public class Tabuleiro implements Runnable {
     public JLabel newWall(int top, int left) {
         JLabel pixel = new JLabel();
                     
-        pixel.setBackground(Color.decode("#c0392b"));
+        pixel.setBackground(Color.decode("#555555"));
         pixel.setSize(10,10);
         pixel.setLocation(top, left);
         pixel.setOpaque(true);
@@ -58,7 +58,7 @@ public class Tabuleiro implements Runnable {
     public JLabel newWalkArea(int top, int left) {
         JLabel pixel = new JLabel();
                     
-        pixel.setBackground(Color.LIGHT_GRAY);
+        pixel.setBackground(Color.decode("#33CC99"));
         pixel.setSize(10,10);
         pixel.setLocation(top, left);
         pixel.setOpaque(true);
@@ -69,7 +69,7 @@ public class Tabuleiro implements Runnable {
     public JLabel newPosSnake(int top, int left) {
         JLabel pixel = new JLabel();
                     
-        pixel.setBackground(Color.decode("#27ae60"));
+        pixel.setBackground(Color.decode("#D6003B"));
         pixel.setSize(10,10);
         pixel.setLocation(top, left);
         pixel.setOpaque(true);
@@ -80,7 +80,7 @@ public class Tabuleiro implements Runnable {
     public JLabel newFood(int top, int left) {
         JLabel pixel = new JLabel();
                     
-        pixel.setBackground(Color.BLACK);
+        pixel.setBackground(Color.decode("#D65305"));
         pixel.setSize(10,10);
         pixel.setLocation(top, left);
         pixel.setOpaque(true);
