@@ -15,12 +15,10 @@ import javax.swing.JFrame;
 public class Snake {
     private int top;
     private int left;
-    private Color cor;
     
-    public Snake (int top, int left, Color cor) {
+    public Snake (int top, int left) {
         this.top = top;
         this.left = left;
-        this.cor = cor;
     }
     
     public Snake (){}
@@ -41,13 +39,7 @@ public class Snake {
         this.left = left;
     }
 
-    public Color getCor() {
-        return cor;
-    }
-
-    public void setCor(Color cor) {
-        this.cor = cor;
-    }
+ 
     
     
 }

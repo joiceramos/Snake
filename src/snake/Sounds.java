@@ -7,51 +7,50 @@ package snake;
 import java.io.File;
 
 public class Sounds extends Thread{
-	
-	 PlayerSound song;
-	 String selectedSound = "";
-	 final String songGame = "src/sound/background_game.mp3";
-	 final String songEat = "src/sound/eat_food.mp3";
-	 final String songEnd = "src/sound/end.mp3";
-	
-	public Sounds (String selectedSound) {
-		this.selectedSound = selectedSound;
-	};
-	
-	@Override
-	public void run() {
 
-		File sound;
-		
-		if(selectedSound.equals("fundo")) {
-			sound = new File(songGame);
-		} else {
-			if(selectedSound.equals("eat")) {
-				sound = new File(songEat);
-			} else {
-				sound = new File(songEnd);
-			}
-		}
-		
-		song = new PlayerSound();
-		song.play(sound);
-		song.start();
-		if(selectedSound.equals("fundo")) {
-			stopSongWhenGameOver(song);
-		}
-	}
-	private void stopSongWhenGameOver(PlayerSound song) {
-		if(Tela.fimJogo) {
-			song.stop();
-		} else {
+     PlayerSound song;
+     String selectedSound = "";
+     final String songGame = "src/sound/background_game.mp3";
+     final String songEat = "src/sound/eat_food.mp3";
+     final String songEnd = "src/sound/end_game.mp3";
 
-			try {
-				Thread.sleep(1);
-				stopSongWhenGameOver(song);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
+    public Sounds (String selectedSound) {
+        this.selectedSound = selectedSound;
+    };
+
+    @Override
+    public void run() {
+
+        File sound;
+
+        if(selectedSound.equals("fundo")) {
+            sound = new File(songGame);
+        } else {
+            if(selectedSound.equals("eat")) {
+                sound = new File(songEat);
+            } else {
+                sound = new File(songEnd);
+            }
+        }
+
+        song = new PlayerSound(sound);
+        song.start();
+        if(selectedSound.equals("fundo")) {
+            stopSongWhenGameOver(song);
+        }
+    }
+    private void stopSongWhenGameOver(PlayerSound song) {
+        if(Tela.fimJogo) {
+            song.stopSong();
+        } else {
+
+            try {
+                Thread.sleep(1);
+                stopSongWhenGameOver(song);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } 
+        }
+    }
 }

@@ -17,21 +17,30 @@ import javazoom.jl.player.Player;
 public class PlayerSound extends Thread {
     private File sound;
     private Player player;
-        
-    public void play(File sound) {
+
+    public PlayerSound(File sound) {
         this.sound = sound;
     }
-    
+
     public void run() {
         try {
             FileInputStream fis = new FileInputStream(sound);
             BufferedInputStream bis = new BufferedInputStream(fis);
 
-            this.player = new Player(bis);
-            this.player.play();
+            player = new Player(bis);
+            player.play();
 
         } catch (Exception e) {
             System.out.println("Erro: " + sound);
+            e.printStackTrace();
+        }
+    }
+
+    public void stopSong () {
+        try {
+            player.close();
+        } catch (Exception e) {
+            System.out.println("Erro: " + player);
             e.printStackTrace();
         }
     }
