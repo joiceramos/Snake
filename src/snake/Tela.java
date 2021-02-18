@@ -57,8 +57,6 @@ public class Tela extends javax.swing.JFrame {
         fimJogo = false;
         temComidaNaTela = false;
         pontos = 0;
-        
-    	fimJogo = false;
         jPanel1 = new javax.swing.JPanel();
         jLabelPontos = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -69,7 +67,6 @@ public class Tela extends javax.swing.JFrame {
         jPanel1.setName("Snake BCC"); // NOI18N
         jPanel1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-            	System.out.println(evt.getKeyCode());
                 MoveSnake(evt);
             }
         });
@@ -182,123 +179,166 @@ public class Tela extends javax.swing.JFrame {
              
              try {
                  while (!fimJogo) { 
-                	 System.out.println(keyPressed + "teste 1");
                  
-	                 switch (keyPressed) {
-	                     case 37:
-	                         if(key2 != keyPressed) {
-	                             key2 = keyPressed;
-	                             posLeft = posSnake.get(posSnake.size()-1).getLeft();
-	                             posTop = posSnake.get(posSnake.size()-1).getTop();
-	
-	                             for(int i = posLeft; i < tamTabuleiro; i--) {
-	                                 if(t.tabuleiro[posTop][i] == 3) {
-	                                     atualizaPontos();
-	                                 }
-	                                 t.tooglePosition(posTop, i, 2);
-	                                 Snake s = new Snake(posTop, i);
-	                                 posSnake.add(s);	                                 
-	                                 
-	                                 if(i <= 0) {
-	                                     gameOver();
-	                                     break;
-	                                 }
-	
-	                                 if(keyPressed != 37) {
-	                                     break;
-	                                 }
-	                                 Thread.sleep(velocidadeSnake);
-	                             }
-	                         }
-	                         break;
-	                     case 38:
-	                         if(key2 != keyPressed) {
-	                             key2 = keyPressed;
-	                             posLeft = posSnake.get(posSnake.size()-1).getLeft();
-	                             posTop = posSnake.get(posSnake.size()-1).getTop();
-	
-	                             for(int i = posTop; i < tamTabuleiro; i--) {
-	                                 if(t.tabuleiro[i][posLeft] == 3) {
-	                                     atualizaPontos();
-	                                 }
-	                                 
-	                                 t.tooglePosition(i, posLeft, 2);
-	                                        
-	                                 Snake s = new Snake(i, posLeft);
-	
-	                                 posSnake.add(s);
-	
-	                                 if(i <= 0) {
-	                                     gameOver();
-	                                     break;
-	                                 }
-	
-	                                 if(keyPressed != 38) {
-	                                     break;
-	                                 }
-	                                 Thread.sleep(velocidadeSnake);
-	                             }
-	                         }
-	                         break;
-	                     case 39:
-	                         if(key2 != keyPressed) {
-	                             key2 = keyPressed;
-	                             posLeft = posSnake.get(posSnake.size()-1).getLeft();
-	                             posTop = posSnake.get(posSnake.size()-1).getTop();
-	
-	                             for(int i = posLeft; i < tamTabuleiro; i++) {
-	                                 if(t.tabuleiro[posTop][i] == 3) {
-	                                     atualizaPontos();
-	                                 }
-	                                 t.tooglePosition(posTop, i, 2);
-	                                 Snake s = new Snake(posTop, i);
-	                                 posSnake.add(s);
-	
-	                                 if(i >= tamTabuleiro - 1) {
-	                                     gameOver();
-	                                     break;
-	                                 }
-	
-	                                 if(keyPressed != 39) {
-	                                     break;
-	                                 }
-	                                 
-	                                 Thread.sleep(velocidadeSnake);
-	                             }
-	                         }
-	                         break;
-	                     case 40:
-	                         if(key2 != keyPressed) {
-	                             key2 = keyPressed;
-	                             posLeft = posSnake.get(posSnake.size()-1).getLeft();
-	                             posTop = posSnake.get(posSnake.size()-1).getTop();
-	
-	                             for(int i = posTop; i < tamTabuleiro; i++) {
-	                                 if(t.tabuleiro[i][posLeft] == 3) {
-	                                     atualizaPontos();
-	                                 } 
+                 switch (keyPressed) {
+                     case 37:
+                         if(key2 != keyPressed) {
+                             key2 = keyPressed;
+                             posLeft = posSnake.get(posSnake.size()-1).getLeft();
+                             posTop = posSnake.get(posSnake.size()-1).getTop();
 
-	                                 t.tooglePosition(i, posLeft, 2);
-	                                 Snake s = new Snake(i, posLeft);
-	                                 posSnake.add(s);
-	
-	                                 if(i >= tamTabuleiro - 1) {
-	                                     gameOver();
-	                                     break;
-	                                 }
-	
-	                                 if(keyPressed != 40) {
-	                                     break;
-	                                 }
-	                                 Thread.sleep(velocidadeSnake);
-	                             }
-	                         }
-	                         break;
+                             for(int i = posLeft; i < tamTabuleiro; i--) {
+                                 if(t.tabuleiro[posTop][i] == 3) {
+                                     Snake s = new Snake();
+                                     s.setTop(posTop);
+                                     s.setLeft(i);
+                                     posSnake.add(s);
+                                     atualizaPontos();
+                                     t.tabuleiro[posTop][i] = 0;
+                                 }
+
+                                 t.tooglePosition(posTop, i, 2);
+
+                                 Snake s = new Snake();
+                                 s.setTop(posTop);
+                                 s.setLeft(i);
+
+                                 Tela.jPanel1.revalidate();
+                                 Tela.jPanel1.repaint();
+                                 
+                                 
+                                 	
+                                 posSnake.add(s);
+
+                                 if(i <= 0) {
+                                     fimJogo = true; 
+                                     gameOver();
+                                     break;
+                                 }
+
+                                 if(keyPressed != 37) {
+                                     break;
+                                 }
+                                 Thread.sleep(velocidadeSnake);
+                             }
+                         }
+                         break;
+                     case 38:
+                         if(key2 != keyPressed) {
+                             key2 = keyPressed;
+                             posLeft = posSnake.get(posSnake.size()-1).getLeft();
+                             posTop = posSnake.get(posSnake.size()-1).getTop();
+
+                             for(int i = posTop; i < tamTabuleiro; i--) {
+                                 if(t.tabuleiro[i][posLeft] == 3) {
+                                     Snake s = new Snake();
+                                     s.setTop(i);
+                                     s.setLeft(posLeft);
+                                     posSnake.add(s);
+                                     atualizaPontos();
+                                     t.tabuleiro[i][posLeft] = 0;
+                                 }
+                                 
+                                 t.tooglePosition(i, posLeft, 2);
+                                        
+                                 Snake s = new Snake();
+                                 s.setTop(i);
+                                 s.setLeft(posLeft);
+
+                                 posSnake.add(s);
+
+                                 if(i <= 0) {
+                                     fimJogo = true; 
+                                     gameOver();
+                                     break;
+                                 }
+
+                                 if(keyPressed != 38) {
+                                     break;
+                                 }
+                                 Thread.sleep(velocidadeSnake);
+                             }
+                         }
+                         break;
+                     case 39:
+                         if(key2 != keyPressed) {
+                             key2 = keyPressed;
+                             posLeft = posSnake.get(posSnake.size()-1).getLeft();
+                             posTop = posSnake.get(posSnake.size()-1).getTop();
+
+                             for(int i = posLeft; i < tamTabuleiro; i++) {
+                                 if(t.tabuleiro[posTop][i] == 3) {
+                                     Snake s = new Snake();
+                                     s.setTop(posTop);
+                                     s.setLeft(i);
+                                     posSnake.add(s);
+                                     atualizaPontos();
+                                     t.tabuleiro[posTop][i] = 0;
+                                 }
+
+                                 t.tooglePosition(posTop, i, 2);
+
+                                 Snake s = new Snake();
+                                 s.setTop(posTop);
+                                 s.setLeft(i);
+
+                                 posSnake.add(s);
+
+                                 if(i >= tamTabuleiro - 1) {
+                                     fimJogo = true; 
+                                     gameOver();
+                                     break;
+                                 }
+
+                                 if(keyPressed != 39) {
+                                     break;
+                                 }
+                                 Thread.sleep(velocidadeSnake);
+                             }
+                         }
+                         break;
+                     case 40:
+                         if(key2 != keyPressed) {
+                             key2 = keyPressed;
+                             posLeft = posSnake.get(posSnake.size()-1).getLeft();
+                             posTop = posSnake.get(posSnake.size()-1).getTop();
+
+                             for(int i = posTop; i < tamTabuleiro; i++) {
+                                 if(t.tabuleiro[i][posLeft] == 3) {
+                                     Snake s = new Snake();
+                                     s.setTop(i);
+                                     s.setLeft(posLeft);
+                                     posSnake.add(s);
+                                     atualizaPontos();
+                                     t.tabuleiro[i][posLeft] = 0;
+                                     
+                                 } 
+
+                                 t.tooglePosition(i, posLeft, 2);
+
+                                 Snake s = new Snake();
+                                 s.setTop(i);
+                                 s.setLeft(posLeft);
+
+                                 posSnake.add(s);
+
+                                 if(i >= tamTabuleiro - 1) {
+                                     gameOver();
+                                     break;
+                                 }
+
+                                 if(keyPressed != 40) {
+                                     break;
+                                 }
+                                 Thread.sleep(velocidadeSnake);
+                             }
+                         }
+                         break;
                      }
                      sleep(velocidadeSnake/8); 
                  }
-                 removePixel.interrupt();
                  Thread.interrupted();
+                 removePixel.interrupt();
                  
              } catch(InterruptedException ex) {
                  System.out.println("erro: "+ ex);
@@ -314,7 +354,6 @@ public class Tela extends javax.swing.JFrame {
                 int key = -1;
                 
                 while (!fimJogo) { 
-                  	System.out.println(keyPressed+ "teste 2");
                     switch (keyPressed) {
                         case 37:
                         if(key != keyPressed) {
