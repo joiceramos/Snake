@@ -12,7 +12,7 @@ public class Sounds extends Thread{
 	 String selectedSound = "";
 	 final String songGame = "src/sound/background_game.mp3";
 	 final String songEat = "src/sound/eat_food.mp3";
-	 final String songEnd = "src/sound/end_game.mp3";
+	 final String songEnd = "src/sound/end.mp3";
 	
 	public Sounds (String selectedSound) {
 		this.selectedSound = selectedSound;

@@ -20,7 +20,6 @@ public class Tabuleiro implements Runnable {
     public void buildTabuleiro() {
         
         int top = 0;
-       // this.pixels[22][22] = newWall(110, 110);
         for (int linha = 0; linha < tamTabuleiro; linha++) {
             
             int left = 0;

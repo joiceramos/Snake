@@ -42,7 +42,7 @@ public class level extends JFrame {
 	 */
 	public level() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 320);
+		setBounds(100, 100, 500, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -55,7 +55,7 @@ public class level extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("Selecione o nível");
 		lblNewLabel.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		lblNewLabel.setBounds(153, 66, 181, 32);
+		lblNewLabel.setBounds(163, 100, 181, 32);
 		panel.add(lblNewLabel);
 		
 		JButton btnEasy = new JButton("F\u00E1cil");
@@ -64,18 +64,20 @@ public class level extends JFrame {
 				Tela.tamTabuleiro = 60;
 				Tela.velocidadeSnake = 125;
 				Tela.dificuldade = 1;
+				Tela.altura = 600;
+				Tela.largura = 500;
 				Tela.main(null);
 			}
 		});
 		btnEasy.setForeground(Color.WHITE);
 		btnEasy.setBackground(Color.DARK_GRAY);
 		btnEasy.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-		btnEasy.setBounds(163, 109, 120, 23);
+		btnEasy.setBounds(180, 145, 120, 23);
 		panel.add(btnEasy);
 		
 		JLabel lblNewLabel_1 = new JLabel("Snake");
-		lblNewLabel_1.setFont(new Font("Britannic Bold", Font.PLAIN, 30));
-		lblNewLabel_1.setBounds(180, 30, 88, 38);
+		lblNewLabel_1.setFont(new Font("Britannic Bold", Font.PLAIN, 40));
+		lblNewLabel_1.setBounds(190, 60, 200, 38);
 		panel.add(lblNewLabel_1);
 		
 		JButton btnMedium = new JButton("M\u00E9dio");
@@ -84,13 +86,15 @@ public class level extends JFrame {
 				Tela.tamTabuleiro = 50;
 				Tela.velocidadeSnake = 100;
 				Tela.dificuldade = 2;
+				Tela.altura = 500;
+				Tela.largura = 400;
 				Tela.main(null);
 			}
 		});
 		btnMedium.setForeground(Color.WHITE);
 		btnMedium.setBackground(Color.DARK_GRAY);
 		btnMedium.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-		btnMedium.setBounds(163, 143, 120, 23);
+		btnMedium.setBounds(180, 175, 120, 23);
 		panel.add(btnMedium);
 		
 		JButton btnHard = new JButton("Dif\u00EDcil");
@@ -99,6 +103,8 @@ public class level extends JFrame {
 				Tela.tamTabuleiro = 40;
 				Tela.velocidadeSnake = 75;
 				Tela.dificuldade = 3;
+				Tela.altura = 400;
+				Tela.largura = 300;
 				Tela.main(null);
 				
 			}
@@ -106,7 +112,7 @@ public class level extends JFrame {
 		btnHard.setForeground(Color.WHITE);
 		btnHard.setBackground(Color.DARK_GRAY);
 		btnHard.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-		btnHard.setBounds(163, 175, 120, 23);
+		btnHard.setBounds(180, 205, 120, 23);
 		panel.add(btnHard);
 	}
 }

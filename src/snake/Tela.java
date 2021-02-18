@@ -35,6 +35,8 @@ public class Tela extends javax.swing.JFrame {
     public static boolean temComidaNaTela = false;
     public static int pontos = 0;
     public static int dificuldade = 1;
+    public static int altura;
+    public static int largura;
     
     
     public Tela() {
@@ -95,7 +97,7 @@ public class Tela extends javax.swing.JFrame {
         
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 660, Short.MAX_VALUE)
+            .addGap(0, altura, Short.MAX_VALUE)
         );
 
         jLabelPontos.setFont(new java.awt.Font("Impact", 0, 24)); // NOI18N
@@ -114,7 +116,7 @@ public class Tela extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelPontos)
-                .addContainerGap(559, Short.MAX_VALUE))
+                .addContainerGap(largura, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
